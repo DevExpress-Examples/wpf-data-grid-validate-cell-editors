@@ -1,18 +1,25 @@
-<Window x:Class="DXGrid_ValidatingEditors.Window1"
+﻿<Window x:Class="ValidateCell_MVVM.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
         xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" 
-        Title="Window1" Height="300" Width="600">
+        xmlns:local="clr-namespace:ValidateCell_MVVM"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Window.DataContext>
+        <local:MainViewModel />
+    </Window.DataContext>
     <Grid>
-        <dxg:GridControl x:Name="grid" ItemsSource="{Binding ProductList}">
+        <dxg:GridControl ItemsSource="{Binding ProductList}">
             <dxg:GridControl.Columns>
                 <dxg:GridColumn FieldName="ProductName">
                     <dxg:GridColumn.EditSettings>
                         <dxe:TextEditSettings AllowNullInput="False" />
                     </dxg:GridColumn.EditSettings>
                 </dxg:GridColumn>
-                <dxg:GridColumn FieldName="UnitPrice" Validate="GridColumn_Validate">
+                <dxg:GridColumn FieldName="UnitPrice" >
                     <dxg:GridColumn.EditSettings>
                         <dxe:SpinEditSettings DisplayFormat="c2" />
                     </dxg:GridColumn.EditSettings>
@@ -20,7 +27,8 @@
                 <dxg:GridColumn FieldName="Discontinued" />
             </dxg:GridControl.Columns>
             <dxg:GridControl.View>
-                <dxg:TableView AutoWidth="True" HiddenEditor="TableView_HiddenEditor" />
+                <dxg:TableView AutoWidth="True"
+                               ValidateCellCommand="{Binding ValidateCellCommand}"/>
             </dxg:GridControl.View>
         </dxg:GridControl>
     </Grid>
