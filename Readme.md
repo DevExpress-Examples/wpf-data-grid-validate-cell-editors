@@ -17,12 +17,12 @@ This example shows how to validate the focused cell's value. In this example, us
 ### Code Behind Technique
 
 - [MainWindow.xaml](./CS/ValidateCell_CodeBehind/MainWindow.xaml) ([MainWindow.xaml](./VB/ValidateCell_CodeBehind/MainWindow.xaml))
-- [MainWindow.xaml.cs](./CS/ValidateCell_CodeBehind/MainWindow.xaml.cs#L28-L41) ([MainWindow.xaml.vb](./VB/ValidateCell_CodeBehind/MainWindow.xaml.vb#L30-L43))
+- [MainWindow.xaml.cs](./CS/ValidateCell_CodeBehind/MainWindow.xaml.cs#L28-L41) ([MainWindow.xaml.vb](./VB/ValidateCell_CodeBehind/MainWindow.xaml.vb#L36-L44))
 
 ### MVVM Technique
 
 - [MainWindow.xaml](./CS/ValidateCell_MVVM/MainWindow.xaml) ([MainWindow.xaml](./VB/ValidateCell_MVVM/MainWindow.xaml))
-- [MainViewModel.cs](./CS/ValidateCell_MVVM/MainViewModel.cs#L31-L44) ([MainViewModel.vb](./VB/ValidateCell_MVVM/MainViewModel.vb#L33-L46))
+- [MainViewModel.cs](./CS/ValidateCell_MVVM/MainViewModel.cs#L31-L44) ([MainViewModel.vb](./VB/ValidateCell_MVVM/MainViewModel.vb#L39-L47))
 
 <!-- default file list end -->
 
