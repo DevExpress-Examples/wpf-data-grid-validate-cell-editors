@@ -6,7 +6,7 @@
 
 # WPF Data Grid - How to Validate Cell Editors
 
-This example shows how to validate the focused cell's value. In this example, users cannot reduce the product's price by more than 30% if the product is on discount.
+This example shows how to validate the focused cell's value. In this example, users cannot reduce the product's price by more than 30% if the product is on discount. 
 
 ![](https://docs.devexpress.com/WPF/images/GridViewBase_ValidateCellCommand.png?v=21.2)
 
