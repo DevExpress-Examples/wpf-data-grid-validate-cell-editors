@@ -1,33 +1,23 @@
-﻿Imports System
-Imports System.Collections.Generic
-Imports System.Linq
-Imports System.Text
+Imports System
 Imports System.Windows
 Imports System.Windows.Controls
-Imports System.Windows.Data
-Imports System.Windows.Documents
-Imports System.Windows.Input
-Imports System.Windows.Media
-Imports System.Windows.Media.Imaging
-Imports System.Windows.Navigation
-Imports System.Windows.Shapes
-Imports System.Data
 Imports DevExpress.Xpf.Grid
 Imports System.Collections.ObjectModel
 
 Namespace DXGrid_ValidatingEditors
-    Partial Public Class Window1
+
+    Public Partial Class Window1
         Inherits Window
 
         Public Sub New()
-            InitializeComponent()
-            Me.DataContext = New MyViewModel()
+            Me.InitializeComponent()
+            DataContext = New MyViewModel()
         End Sub
 
         Private Sub GridColumn_Validate(ByVal sender As Object, ByVal e As GridCellValidationEventArgs)
             Dim discontinued As Boolean = CType(e.Row, Product).Discontinued
             If discontinued Then
-                Dim discount As Double = 100 - (Convert.ToDouble(e.Value) * 100) / Convert.ToDouble(e.CellValue)
+                Dim discount As Double = 100 - Convert.ToDouble(e.Value) * 100 / Convert.ToDouble(e.CellValue)
                 If Not(discount > 0 AndAlso discount <= 30) Then
                     e.IsValid = False
                     e.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical
@@ -35,44 +25,48 @@ Namespace DXGrid_ValidatingEditors
                         e.ErrorContent = String.Format("The price cannot be greater than ${0}", Convert.ToDouble(e.CellValue))
                         Return
                     End If
-                    e.ErrorContent = String.Format("The discount cannot be greater than 30% (${0}). Please correct the price.", Convert.ToDouble(e.CellValue)*0.7)
+
+                    e.ErrorContent = String.Format("The discount cannot be greater than 30% (${0}). Please correct the price.", Convert.ToDouble(e.CellValue) * 0.7)
                 End If
             End If
         End Sub
 
         Private Sub TableView_HiddenEditor(ByVal sender As Object, ByVal e As EditorEventArgs)
-            If e.Column.FieldName <> "Discontinued" Then
-                Return
-            End If
-            grid.View.CommitEditing()
+            If Not Equals(e.Column.FieldName, "Discontinued") Then Return
+            Me.grid.View.CommitEditing()
         End Sub
     End Class
 
-
     Public Class MyViewModel
+
         Public Sub New()
             CreateList()
         End Sub
 
-        Public Property ProductList() As ObservableCollection(Of Product)
+        Public Property ProductList As ObservableCollection(Of Product)
+
         Private Sub CreateList()
             ProductList = New ObservableCollection(Of Product)()
-            Dim r As New Random()
-            For i As Integer = 0 To 19
-                Dim p As New Product(i)
+            Dim r As Random = New Random()
+            For i As Integer = 0 To 20 - 1
+                Dim p As Product = New Product(i)
                 p.UnitPrice = r.Next(1, 50)
                 ProductList.Add(p)
-            Next i
+            Next
         End Sub
     End Class
+
     Public Class Product
+
         Public Sub New(ByVal i As Integer)
             ProductName = "Product" & i
             Discontinued = i Mod 5 = 0
         End Sub
 
-        Public Property ProductName() As String
-        Public Property UnitPrice() As Integer
-        Public Property Discontinued() As Boolean
+        Public Property ProductName As String
+
+        Public Property UnitPrice As Integer
+
+        Public Property Discontinued As Boolean
     End Class
 End Namespace
