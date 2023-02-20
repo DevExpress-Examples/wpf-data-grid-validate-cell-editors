@@ -38,7 +38,7 @@ Namespace ValidateCell_MVVM
 
         <Command>
         Public Sub ValidateCell(ByVal args As RowCellValidationArgs)
-            If args.FieldName IsNot NameOf(Product.UnitPrice) OrElse Not CType(args.Item, Product).Discontinued Then Return
+            If Not Equals(args.FieldName, NameOf(Product.UnitPrice)) OrElse Not CType(args.Item, Product).Discontinued Then Return
             Dim cellValue = CDbl(args.OldValue)
             Dim discount = 100 - Convert.ToDouble(args.NewValue) / cellValue * 100
             If discount > 0 AndAlso discount <= 30 Then Return

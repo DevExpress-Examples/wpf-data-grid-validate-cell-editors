@@ -24,8 +24,8 @@ Namespace ValidateCell_CodeBehind
         Inherits Window
 
         Public Sub New()
-            InitializeComponent()
-            grid.ItemsSource = GetProductList().ToList()
+            Me.InitializeComponent()
+            Me.grid.ItemsSource = GetProductList().ToList()
         End Sub
 
         Private Shared Function GetProductList() As IEnumerable(Of Product)
@@ -34,7 +34,7 @@ Namespace ValidateCell_CodeBehind
         End Function
 
         Private Sub OnValidateCell(ByVal sender As Object, ByVal e As GridCellValidationEventArgs)
-            If e.Column.FieldName IsNot NameOf(Product.UnitPrice) OrElse Not CType(e.Row, Product).Discontinued Then Return
+            If Not Equals(e.Column.FieldName, NameOf(Product.UnitPrice)) OrElse Not CType(e.Row, Product).Discontinued Then Return
             Dim cellValue = CDbl(e.CellValue)
             Dim discount = 100 - Convert.ToDouble(e.Value) / cellValue * 100
             If discount > 0 AndAlso discount <= 30 Then Return
