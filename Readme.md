@@ -9,7 +9,7 @@
 
 This example shows how to validate the focused cell's value. In this example, users cannot reduce the product's price by more than 30% if the product is on discount. 
 
-![](https://docs.devexpress.com/WPF/images/GridViewBase_ValidateCellCommand.png?v=21.2)
+![](https://docs.devexpress.com/WPF/images/GridViewBase_ValidateCellCommand.png)
 
 <!-- default file list -->
 
@@ -47,3 +47,4 @@ This example shows how to validate the focused cell's value. In this example, us
 
 (you will be redirected to DevExpress.com to submit your response)
 <!-- feedback end -->
+
